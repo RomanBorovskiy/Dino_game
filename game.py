@@ -68,8 +68,6 @@ class GameApp:
 
         self.all_sprites.add(Horizon(-constants.START_X, constants.GROUND_OFS))
 
-        # self.img = images.images_list['HORIZON_1']
-
     def add_pterodactyl(self, altitude):
         pterodactyl = Pterodactyl(self.screen.get_width() + self.odometer - 100, altitude)
         self.obstacles.add(pterodactyl)
@@ -196,8 +194,8 @@ class GameApp:
         pos = last_x - self.odometer + min_distance
 
         if pos < constants.WIDTH:
-            if random.randint(1, 10) == 1:
-                self.add_pterodactyl(random.choice([60, 150, 200]))
+            if random.randint(1, 100) < constants.PTERODACTYL_PROBABLITY:
+                self.add_pterodactyl(random.choice(constants.PTERODACTYL_ALTITUDES))
             else:
                 self.add_obstacle(
                     random.choice([el for el in ObstacleType]), random.choice([el for el in ObstacleWidth])
